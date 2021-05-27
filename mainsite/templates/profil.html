@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% load static %}
+
+<head>
+    <meta charset="utf-8">
+    <!--  This file has been downloaded from bootdey.com    @bootdey on twitter -->
+    <!--  All snippets are MIT license http://bootdey.com/license -->
+    <title>Profil</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="{% static 'assets/login/icons/favicon.ico' %}"/>
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style_profil.css' %}">
+</head>
+
+<body>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <div class="container bootstrap snippets bootdey">
+        <div class="row">
+            <div class="profile-nav col-md-3">
+                <div class="panel">
+                    <div class="user-heading round">
+                        <a href="#">
+                            <img src="{% static 'assets/profil/avatar.png' %}" alt="">
+                        </a>
+                        <h1>Maewen Pelletier</h1>
+                        <p>maewen.p@gmail.com</p>
+                    </div>
+
+                    <ul class="nav nav-pills nav-stacked">
+                        <li active><a href="#"> <i class="fa fa-edit"></i> Edit profile</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="profile-info col-md-9">
+                <div class="panel">
+                    <div class="bio-graph-heading">
+                        <h1>UT4M Master</h1>
+                        <span>68 days, 18 Hours, 38 minutes, 10 seconds<span>
+                                <h3>May the spirit be with you</h3>
+                    </div>
+                    <div class="panel-body bio-graph-info">
+                        <h1>Bio Graph</h1>
+                        <div class="row">
+                            <div class="bio-row">
+                                <p><span>First Name </span>: Maewen</p>
+                            </div>
+                            <div class="bio-row">
+                                <p><span>Last Name </span>: Pelletier</p>
+                            </div>
+                            <div class="bio-row">
+                                <p><span>Country</span>: <i class="ico ico-france"></i>
+                                    <p>
+                            </div>
+                            <div class="bio-row">
+                                <p><span>Birthday</span>: 14 May 1996</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <iframe height='160' width='100%' frameborder='0' allowtransparency='true' scrolling='no'
+                    src='https://www.strava.com/athletes/17464740/activity-summary/8d8133ac9a2473492a472958492a2e7ca34ec0e6'></iframe>
+                <div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h2 class="title-run">Monthly progress</h2>
+                            <div class="panel">
+                                <div class="panel-body">
+                                    <div class="bio-chart">
+                                        <div style="display:inline;width:100px;height:100px;"><canvas width="100"
+                                                height="100px"></canvas><input class="knob" data-width="100"
+                                                data-height="100" data-displayprevious="true" data-thickness=".2"
+                                                value="70%" data-fgcolor="#4CC5CD" data-bgcolor="#97be4b"
+                                                style="width: 54px; height: 60px; position: absolute; vertical-align: middle; margin-top: 33px; margin-left: -77px; border: 0px; font-weight: bold; font-style: normal; font-variant: normal; font-stretch: normal; font-size: 20px; line-height: normal; font-family: Arial; text-align: center; color: #97be4b; padding: 0px; -webkit-appearance: none; background: none;">
+                                        </div>
+                                    </div>
+                                    <div class="bio-desk">
+                                        <h3>Kilometers ran</h3>
+                                        <p>Expected : 500</p>
+                                        <p>Actual : 350</p>
+                                    </div>
+                                    <div class="bio-chart">
+                                        <div style="display:inline;width:100px;height:100px;"><canvas width="100"
+                                                height="100px"></canvas><input class="knob" data-width="100"
+                                                data-height="100" data-displayprevious="true" data-thickness=".2"
+                                                value="60%" data-fgcolor="#4CC5CD" data-bgcolor="#97be4b"
+                                                style="width: 54px; height: 60px; position: absolute; vertical-align: middle; margin-top: 33px; margin-left: -77px; border: 0px; font-weight: bold; font-style: normal; font-variant: normal; font-stretch: normal; font-size: 20px; line-height: normal; font-family: Arial; text-align: center; color: #97be4b; padding: 0px; -webkit-appearance: none; background: none;">
+                                        </div>
+                                    </div>
+                                    <div class="bio-desk">
+                                        <h3>Meters climbed</h3>
+                                        <p>Expected : 5000</p>
+                                        <p>Actual : 3000</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h2 class="title-run">Yearly progress</h2>
+                            <div class="panel">
+                                <div class="panel-body">
+                                    <div class="bio-chart">
+                                        <div style="display:inline;width:100px;height:100px;"><canvas width="100"
+                                                height="100px"></canvas><input class="knob" data-width="100"
+                                                data-height="100" data-displayprevious="true" data-thickness=".2"
+                                                value="70%" data-fgcolor="#4CC5CD" data-bgcolor="#97be4b"
+                                                style="width: 54px; height: 60px; position: absolute; vertical-align: middle; margin-top: 33px; margin-left: -77px; border: 0px; font-weight: bold; font-style: normal; font-variant: normal; font-stretch: normal; font-size: 20px; line-height: normal; font-family: Arial; text-align: center; color: #97be4b; padding: 0px; -webkit-appearance: none; background: none;">
+                                        </div>
+                                    </div>
+                                    <div class="bio-desk">
+                                        <h3>Kilometers ran</h3>
+                                        <p>Expected : 500</p>
+                                        <p>Actual : 350</p>
+                                    </div>
+                                    <div class="bio-chart">
+                                        <div style="display:inline;width:100px;height:100px;"><canvas width="100"
+                                                height="100px"></canvas><input class="knob" data-width="100"
+                                                data-height="100" data-displayprevious="true" data-thickness=".2"
+                                                value="60%" data-fgcolor="#4CC5CD" data-bgcolor="#97be4b"
+                                                style="width: 54px; height: 60px; position: absolute; vertical-align: middle; margin-top: 33px; margin-left: -77px; border: 0px; font-weight: bold; font-style: normal; font-variant: normal; font-stretch: normal; font-size: 20px; line-height: normal; font-family: Arial; text-align: center; color: #97be4b; padding: 0px; -webkit-appearance: none; background: none;">
+                                        </div>
+                                    </div>
+                                    <div class="bio-desk">
+                                        <h3>Meters climbed</h3>
+                                        <p>Expected : 5000</p>
+                                        <p>Actual : 3000</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <h2 class="title-run">All time progress</h2>
+                            <div class="panel">
+                                <div class="panel-body">
+                                    <div class="bio-chart">
+                                        <div style="display:inline;width:100px;height:100px;"><canvas width="100"
+                                                height="100px"></canvas><input class="knob" data-width="100"
+                                                data-height="100" data-displayprevious="true" data-thickness=".2"
+                                                value="1950" data-fgcolor="#4CC5CD" data-bgcolor="#97be4b"
+                                                style="width: 54px; height: 60px; position: absolute; vertical-align: middle; margin-top: 33px; margin-left: 0px; border: 0px; font-weight: bold; font-style: normal; font-variant: normal; font-stretch: normal; font-size: 20px; line-height: normal; font-family: Arial; text-align: center; color: #97be4b; padding: 0px; -webkit-appearance: none; background: none;">
+                                        </div>
+                                    </div>
+                                    <div class="bio-desk">
+                                        <h3>Kilometers ran</h3>
+                                        <p>Expected : 500</p>
+                                        <p>Actual : 350</p>
+                                    </div>
+                                    <div class="bio-chart">
+                                        <div style="display:inline;width:100px;height:100px;"><canvas width="100"
+                                                height="100px"></canvas><input class="knob" data-width="100"
+                                                data-height="100" data-displayprevious="true" data-thickness=".2"
+                                                value="10345" data-fgcolor="#4CC5CD" data-bgcolor="#97be4b"
+                                                style="width: 60px; height: 60px; position: absolute; vertical-align: middle; margin-top: 33px; margin-left: 0px; border: 0px; font-weight: bold; font-style: normal; font-variant: normal; font-stretch: normal; font-size: 20px; line-height: normal; font-family: Arial; text-align: center; color: #97be4b; padding: 0px; -webkit-appearance: none; background: none;">
+                                        </div>
+                                    </div>
+                                    <div class="bio-desk">
+                                        <h3>Meters climbed</h3>
+                                        <p>Expected : 5000</p>
+                                        <p>Actual : 3000</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="myDiv" style="width:100%;height:250px;"></div>
+                <div id="container-speed" class="chart-container"></div>
+            </div>
+        </div>
+    </div>
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.src.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+    <script type="text/javascript" src="{% static 'js/profil_main.js' %}"></script>
+</body>
+
+</html>

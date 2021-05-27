@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% load static %}
+
+<head>
+    <meta charset="utf-8">
+    <title>Community</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://kit.fontawesome.com/bd5780145d.js" crossorigin="anonymous"></script>
+    <link href="{% static 'assets/favicon-2.png' %}" rel="icon">
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style_community.css' %}">
+</head>
+
+<body>
+    <header class="p-3 bg-dark text-white">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                    <h1 class="me-5">Trailing Planner</h1>
+                </a>
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    <li><a href="{% url 'index' %}" class="nav-link px-2 text-secondary">Home</a></li>
+                    <li><a href="{% url 'profil' %}"><i class="fas fa-user-alt"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1 id="title">Hall of Fame (Since site creation)</h1>
+        <div class="hf-mixed mx-auto col-md-10">
+            <h1>1st</h1>
+            <div class="athlete athlete-first card mb-3 mx-auto">
+                <div class="container-img">
+                    <img src="{% static 'assets/profil/avatar.png' %}" style="height: 75px;">
+                </div>
+                <div class="col-md-8 mx-auto">
+                    <div class="card-body">
+                        <h2 class="card-title"><a href="#">John Doe</a></h2>
+                        <hr>
+                        <h4>1376 Km Ran 23190M D+</h4>
+                        <div class="graphContainer">
+                            <div id="progressChartYearFirst"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hf-mixed mx-auto col-md-10">
+            <h1>2nd</h1>
+            <div class="athlete athlete-second card mb-3 mx-auto">
+                <div class="container-img">
+                    <img src="{% static 'assets/profil/avatar.png' %}" style="height: 75px;">
+                </div>
+                <div class="col-md-8 mx-auto">
+                    <div class="card-body">
+                        <h2 class="card-title"><a href="#">Elena Renday</a></h2>
+                        <hr>
+                        <h4>1258 Km Ran 23000M D+</h4>
+                        <div class="graphContainer">
+                            <div id="progressChartYearSecond"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="hf-mixed mx-auto col-md-10">
+            <h1>3rd</h1>
+            <div class="athlete athlete-third card mb-3 mx-auto">
+                <div class="container-img">
+                    <img src="{% static 'assets/profil/avatar.png' %}" style="height: 75px;">
+                </div>
+                <div class="col-md-8 mx-auto">
+                    <div class="card-body">
+                        <h2 class="card-title"><a href="#">Marco Pintal</a></h2>
+                        <hr>
+                        <h4>1230 Km Ran 19000M D+</h4>
+                        <div class="graphContainer">
+                            <div id="progressChartYearThird"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</body>
+
+<script src="https://code.highcharts.com/highcharts.src.js"></script>
+<script type="text/javascript" src="{% static 'js/community_main.js' %}"></script>
+
+</html>

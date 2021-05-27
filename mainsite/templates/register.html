@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sign Up Form by Colorlib</title>
+    <title>Create new account</title>
 
     <!-- Font Icon -->
     <link rel="stylesheet" href="{% static "fonts/material-icon/css/material-design-iconic-font.min.css" %}">
@@ -43,7 +43,7 @@
                         </div>
                     </form>
                     <p class="loginhere">
-                        Have already an account ? <a href="../Login_v16/index.html" class="loginhere-link">Login here</a>
+                        Have already an account ? <a href={% url 'login' %} class="loginhere-link">Login here</a>
                     </p>
                 </div>
             </div>
