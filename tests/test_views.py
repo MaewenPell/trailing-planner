@@ -45,14 +45,14 @@ class ProfilPageTest(SimpleTestCase):
         )
 
 
-class CommunityPageTest(SimpleTestCase):
+class WallOfFamePageTest(SimpleTestCase):
     def test_login_page_url_exists_at_desired_location(self) -> None:
-        self.assertEquals(self.client.get("/community/").status_code, 200)
+        self.assertEquals(self.client.get("/walloffame/").status_code, 200)
 
     def test_view_contains_correct_html(self) -> None:
         self.assertContains(
-            self.client.get("/community/"),
-            "<title>Community</title>",
+            self.client.get("/walloffame/"),
+            "<title>Wall of fame</title>",
         )
 
 

@@ -10,12 +10,12 @@
     <title>Profil</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="{% static 'assets/login/icons/favicon.ico' %}"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style_profil.css' %}">
 </head>
 
 <body>
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <div class="container bootstrap snippets bootdey">
         <div class="row">
             <div class="profile-nav col-md-3">
@@ -29,7 +29,8 @@
                     </div>
 
                     <ul class="nav nav-pills nav-stacked">
-                        <li active><a href="#"> <i class="fa fa-edit"></i> Edit profile</a></li>
+                        <li active><a href="#"><i class="fa fa-edit"></i>Edit profile</a></li>
+                        <li active><a href="{% url 'planner' %}"><i class="far fa-calendar-alt"></i></i>Training Plan</a></li>
                     </ul>
                 </div>
             </div>

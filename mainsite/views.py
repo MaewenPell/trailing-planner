@@ -17,8 +17,8 @@ def profil(request):
     return render(request, 'profil.html')
 
 
-def community(request):
-    return render(request, 'community.html')
+def wallOfFame(request):
+    return render(request, 'walloffame.html')
 
 
 def planner(request):
