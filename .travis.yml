@@ -9,8 +9,5 @@ before-script:
 services:
   - postgresql
 
-env:
-  - DJANGO_SETTINGS_MODULE='trailing_planner.settings.travis'
-
 script:
   - ./manage.py test
