@@ -6,5 +6,8 @@ python:
 before-script:
   - pip install -r requirements.txt
 
+services:
+  - postgresql
+
 script:
   - ./manage.py test
