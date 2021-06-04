@@ -75,16 +75,29 @@ WSGI_APPLICATION = 'trailing_planner.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'trailing_planner',
-        'USER': 'maewen',
-        'PASSWORD': '',
-        'HOST': '',
-        'PORT': '5432'
+#Use the following live settings to build on Travis CI
+if os.getenv('TRAVIS', None):
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': '',
+            'USER': 'postgres',
+            'PASSWORD': '',
+            'HOST': '',
+            'PORT': '',
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'trailing_planner',
+            'USER': 'maewen',
+            'PASSWORD': '',
+            'HOST': '',
+            'PORT': '5432'
+        }
+    }
 
 
 # Password validation
