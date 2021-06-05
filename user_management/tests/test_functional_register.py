@@ -1,4 +1,4 @@
-from django.test import TestCase
+from django.test import TestCase, Client
 from user_management.users import CreateNewUser
 
 
@@ -109,3 +109,42 @@ class TestCreateNewUser(TestCase):
         self.assertFalse(res)
         self.assertEqual(
             msg[0], "First name or Last name is too short (2 char min)")
+
+    def test_user_register_success(self):
+        c = Client()
+        request = c.post(
+            '/users/create-new-user/',
+            {
+                'first_name': "LocalTestUser123",
+                'last_name': "LastNameTestUser123",
+                'email': "email@test-user.com",
+                'password': "test1234&",
+                're_password': "test1234&"
+            })
+
+        self.assertRedirects(request, '/', status_code=302,
+                             target_status_code=200, msg_prefix='',
+                             fetch_redirect_response=True)
+
+    def test_user_register_fail_messages(self):
+        response = self.client.post(
+            '/users/create-new-user/',
+            data={
+                'first_name': "LocalTestUser123",
+                'last_name': "LastNameTestUser123",
+                'email': "email@test-user.com",
+                'password': "test",
+                're_password': "test"
+            }, follow=True)
+
+        self.assertRedirects(response,
+                             '/users/register/', status_code=302,
+                             target_status_code=200, msg_prefix='',
+                             fetch_redirect_response=True)
+
+        messages = response.context['messages']
+
+        for message in messages:
+            self.assertEqual(message.level_tag, 'error')
+            self.assertEqual(
+                message.message, "Password must contain at least 8 characters")
