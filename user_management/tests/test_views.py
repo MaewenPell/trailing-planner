@@ -1,7 +1,4 @@
 from django.test import SimpleTestCase
-import django
-
-django.setup()
 
 
 class RegisterPageTest(SimpleTestCase):
