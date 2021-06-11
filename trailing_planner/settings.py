@@ -32,13 +32,15 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'mainsite.apps.MainsiteConfig',
+    'user_management.apps.UserManagementConfig',
+    'user_profil.apps.UserProfilConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'mainsite.apps.MainsiteConfig',
 ]
 
 MIDDLEWARE = [
@@ -75,7 +77,7 @@ WSGI_APPLICATION = 'trailing_planner.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-#Use the following live settings to build on Travis CI
+# Use the following live settings to build on Travis CI
 if os.getenv('TRAVIS', None):
     DATABASES = {
         'default': {
