@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from user_management.users import CreateNewUser, ConnectUser
 from django.contrib import messages
+from django.contrib.auth import logout
 
 
 def register(request):
@@ -19,6 +20,8 @@ def createNewUser(request):
 
 
 def login(request):
+    if request.user.is_authenticated:
+        return redirect("profil")
     return render(request, 'login.html')
 
 
@@ -29,3 +32,11 @@ def loginUser(request):
     else:
         messages.error(request, msg)
         return redirect("login")
+
+
+def logoutUser(request):
+    if request.user.is_authenticated:
+        logout(request)
+        return redirect('index')
+    else:
+        return redirect('login')

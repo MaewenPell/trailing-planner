@@ -417,3 +417,19 @@ ul.summary-list>li:last-child {
     margin-bottom: 30px;
     text-align: center;
 }
+
+.container-sport-profil {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: auto;
+}
+
+.container-sport-profil h1 {
+    text-align: center;
+}
+
+.panel-body-chart {
+    display: flex;
+    flex-direction: column;
+}

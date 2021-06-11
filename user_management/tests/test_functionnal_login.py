@@ -1,5 +1,5 @@
 from django.test import TestCase, Client
-from user_management.users import CreateNewUser, ConnectUser
+from user_management.users import CreateNewUser
 
 
 class TestCreateNewUser(TestCase):
