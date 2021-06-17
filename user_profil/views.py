@@ -12,5 +12,6 @@ def profil(request):
 
 def create_sport_profil(request):
     if request.user.is_authenticated:
-        res, sport_profil = DBQuery(request.user).create_user_profil(request.POST)
+        res, sport_profil = DBQuery(
+            request.user).create_sport_profil(request.POST)
     return profil(request)

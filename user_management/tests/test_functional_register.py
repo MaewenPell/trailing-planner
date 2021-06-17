@@ -22,6 +22,11 @@ class TestCreateNewUser(TestCase):
         }
         cls.res, cls.msg, cls.user = CreateNewUser(cls.correct_data).register()
 
+    def test_view_register(self):
+        c = Client()
+        response = c.get('/users/register/')
+        self.assertEqual(200, response.status_code)
+
     def test_class_data_are_correct(self):
         self.assertEqual(self.user.first_name, self.correct_data["first_name"])
         self.assertEqual(self.user.last_name, self.correct_data["last_name"])
