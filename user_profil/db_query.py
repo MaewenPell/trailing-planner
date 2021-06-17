@@ -7,7 +7,7 @@ class DBQuery():
     def __init__(self, user) -> None:
         self.user = user
 
-    def create_user_profil(self, sport_profil) -> tuple:
+    def create_sport_profil(self, sport_profil) -> tuple:
         self.objectif_name = sport_profil['objectifName']
         self.objectif_distance = sport_profil['objectifDistance']
         self.objectif_d = sport_profil['objectifD']
