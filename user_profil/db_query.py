@@ -1,4 +1,5 @@
 from user_profil.models import SportProfil
+from mainsite.models import Training, TrainingResume, SportProfil
 from django.contrib.auth.models import User
 from datetime import date
 
@@ -48,3 +49,23 @@ class DBQuery():
             return (True, context)
         except SportProfil.DoesNotExist:
             return (False, None)
+
+    def create_training(self, new_training):
+        training_res, created = TrainingResume.objects.get_or_create(
+            sportProfilRelated=SportProfil.objects.get(user=self.user)
+
+        )
+        training_date = new_training['trainingDate']
+        year = int(training_date[:4])
+        month = int(training_date[5:7])
+        day = int(training_date[8:10])
+        Training.objects.create(
+            trainingListResume=training_res,
+            trainingDate=date(year=year, month=month, day=day),
+            trainingType=new_training['trainingType'],
+            trainingKm=new_training['trainingKm'],
+            trainingD=new_training['trainingD'],
+            trainingComments=new_training['trainingComments'],
+            status=False,
+            feeling=0,
+        )

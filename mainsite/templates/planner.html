@@ -34,9 +34,9 @@
         <div class="outside-container">
             <div class="objectives col-md-6">
                 <div class="mx-auto main-obj">
-                    <h1>J - 73 before UT4M Master</h1>
-                    <h2>95 KM - 5500 D+</h2>
-                    <h3> 19 Cheers Up </h3>
+                    <h1>{{final_objectif_name}}</h1>
+                    <h2>{{final_objectif_km}} Km- {{final_objectif_deniv}}D+</h2>
+                    <h3> XXXXX Cheers Up </h3>
                 </div>
                 <div class="card mb-3 bd-callout bd-callout-intensive">
                     <div class="card-header">Week type : Intensive training</div>
@@ -77,17 +77,13 @@
                     </div>
                 </div>
             </div>
-            <div class="feed col-md-6">
-                <p>Twitter Feed</p>
-            </div>
         </div>
         <hr>
         <div class="col-md-12 train-planning" style="text-align: center;">
             <h1>Training planning</h1>
-            <button type="button" class="add-training btn btn-primary btn-rounded btn-icon"><i class="fa fa-plus"
-                    style="padding-right: 1rem;"></i>
-                Add new training
-            </button>
+            <a href="{% url 'add_new_training' %}" class="add-training btn btn-primary btn-rounded btn-icon">
+                <i class="fas fa-plus"></i> Add new training
+            </a>
         </div>
         <div class="board">
             <div class="board-lists">
@@ -190,6 +186,7 @@
         </div>
     </div>
 </body>
+
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script src="https://code.highcharts.com/highcharts.src.js"></script>

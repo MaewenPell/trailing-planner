@@ -3,7 +3,7 @@ from user_management.users import CreateNewUser
 from user_profil.db_query import DBQuery
 
 
-class DBQueryTest(TestCase):
+class TestDBQuery(TestCase):
     @classmethod
     def setUpTestData(cls) -> None:
         cls.data_login = {

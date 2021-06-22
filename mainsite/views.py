@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from user_profil.db_query import DBQuery
 
 
 def index(request):
@@ -10,4 +11,20 @@ def wallOfFame(request):
 
 
 def planner(request):
-    return render(request, 'planner.html')
+    _, sport_profil = DBQuery(request.user).get_user_profil()
+    if request.user.is_authenticated:
+        return render(request, 'planner.html', sport_profil)
+    else:
+        return redirect("register")
+
+
+def addNewTraining(request):
+    return render(request, 'add_training.html')
+
+
+def createNewTraining(request):
+    if request.user.is_authenticated:
+        DBQuery(request.user).create_training(request.POST)
+        return redirect("add_new_training")
+    else:
+        redirect("register")
