@@ -11,8 +11,8 @@ def wallOfFame(request):
 
 
 def planner(request):
-    _, sport_profil = DBQuery(request.user).get_user_profil()
     if request.user.is_authenticated:
+        _, sport_profil = DBQuery(request.user).get_user_profil()
         return render(request, 'planner.html', sport_profil)
     else:
         return redirect("register")

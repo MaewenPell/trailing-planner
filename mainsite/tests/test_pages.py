@@ -12,18 +12,14 @@ class HomePageTest(SimpleTestCase):
 
 
 class PlannerPageTest(SimpleTestCase):
-    def test_login_page_url_exists_at_desired_location(self) -> None:
-        self.assertEquals(self.client.get("/planner/").status_code, 200)
-
-    def test_view_contains_correct_html(self) -> None:
-        self.assertContains(
-            self.client.get("/planner/"),
-            "<title>Planner</title>",
-        )
+    def test_planner_page_url_exists_at_desired_location(self) -> None:
+        self.assertRedirects(
+            self.client.get("/planner/"), "/users/register/",
+            302, fetch_redirect_response=True)
 
 
 class WallOfFamePageTest(SimpleTestCase):
-    def test_login_page_url_exists_at_desired_location(self) -> None:
+    def test_walloffame_page_url_exists_at_desired_location(self) -> None:
         self.assertEquals(self.client.get("/walloffame/").status_code, 200)
 
     def test_view_contains_correct_html(self) -> None:
