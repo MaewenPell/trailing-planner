@@ -231,3 +231,11 @@ li {
 .add-training {
     font-size: 1.5rem;
 }
+
+.outside-container {
+    display: flex;
+}
+
+.objectives {
+    margin: auto;
+}
