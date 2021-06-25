@@ -117,14 +117,13 @@ li {
     padding-bottom: 5px;
 }
 
-.todo {
+.False {
     color: orange
 }
 
-.done {
+.True {
     color: green
 }
-
 
 .bd-callout {
     padding: 1.25rem;
@@ -136,19 +135,36 @@ li {
     border-radius: .5rem;
 }
 
-.bd-callout-recuperation {
+.bd-callout-Recovery.run {
     border-left-color: #5bc0de;
 }
 
-.bd-callout-intensive {
+.bd-callout-Goal.like.run {
+    border-left-color: #009688;
+}
+
+.bd-callout-Specific.run {
+    border-left-color: #9C27B0;
+}
+
+.bd-callout-Intensive.run {
     border-left-color: red;
 }
 
-.bd-callout-todo {
+.bd-callout-Sharpening.training {
+    border-left-color: #FFA000;
+}
+
+.bd-callout-notraining {
+    border-left-color: grey;
+}
+
+
+.bd-callout-False {
     border-left-color: orange;
 }
 
-.bd-callout-done {
+.bd-callout-True {
     border-left-color: green;
 }
 

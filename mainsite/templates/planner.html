@@ -34,42 +34,14 @@
         <div class="outside-container">
             <div class="objectives col-md-6">
                 <div class="mx-auto main-obj">
-                    <h1>{{final_objectif_name}}</h1>
-                    <h2>{{final_objectif_km}} Km- {{final_objectif_deniv}}D+</h2>
+                    <h1>{{sport_profil.final_objectif_name}}</h1>
+                    <h2>{{sport_profil.final_objectif_km}} Km- {{sport_profil.final_objectif_deniv}}D+</h2>
                     <h3> XXXXX Cheers Up </h3>
                 </div>
                 <div class="card mb-3 bd-callout bd-callout-intensive">
-                    <div class="card-header">Week type : Intensive training</div>
                     <div class="card-body">
                         <p class="card-text">
-                            <h2>Weekly objectives (17 -> 23 may)</h2>
-                            <ul>
-                                <li>
-                                    <strong>Objective (KM)</strong>: 100 km <strong>Current</strong>: 75km <strong>Left
-                                    </strong>: 25KM
-                                </li>
-                                <li>
-                                    <strong>Objective (Elevation gain)</strong> : 3000 D+ <strong>Current</strong>:
-                                    1000D+
-                                    <strong>Left </strong>: 2000D+
-                                </li>
-                            </ul>
-                        </p>
-                        <hr>
-                        <p class="card-text">
-                            <h2>Monthly objectives (May)</h2>
-                            <ul>
-                                <li>
-                                    <strong>Objective (KM)</strong>: 400 km <strong>Current</strong>: 75km <strong>Left
-                                    </strong>: 325KM
-                                </li>
-                                <li>
-                                    <strong>Objective (Elevation gain)</strong> : 12000 D+ <strong>Current</strong>:
-                                    1000D+
-                                    <strong>Left </strong>: 11000D+
-                                </li>
-                            </ul>
-                        </p>
+                            <h2>Weekly training evolution</h2>
                         <div class="graphContainer">
                             <div id="progressChartWeek"></div>
                             <div id="progressChartMonth"></div>
@@ -91,85 +63,274 @@
                     <div class="list-title">
                         Monday
                     </div>
-                    <div class="card mb-3 bd-callout bd-callout-intensive">
-                        <div class="card-header">Intensive run</div>
-                        <div class="card-body">
-                            <h5 class="card-title">17/05 - Evening</h5>
-                            <p class="card-text">
-                                <ul>
-                                    <li><strong>Nb of km</strong>: 16 km</li>
-                                    <li><strong>Elevation gain</strong> : 750 D+</li>
-                                    <li><strong>Comments :</strong></li>
-                                    <p>Fast tempo, 75% FCM</p>
-                                </ul>
-                            </p>
-                            <div class="card-footer text-muted bd-callout bd-callout-done">
-                                Status : <span class="done">Done</span>
+                    {% if trainings.1 is not none %}
+                        <div class="card mb-3 bd-callout bd-callout-{{trainings.1.trainingType}}">
+                            <div class="card-header">{{ trainings.1.trainingType }}</div>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ trainings.1.trainingDate }}</h5>
+                                <p class="card-text">
+                                    <ul>
+                                        <li><strong>Nb of km</strong>: {{ trainings.1.trainingKm }} km</li>
+                                        <li><strong>Elevation gain</strong>: {{ trainings.1.trainingD }} D+</li>
+                                        <li><strong>Comments :</strong></li>
+                                        <p>{{ trainings.1.trainingComments }}</p>
+                                    </ul>
+                                </p>
+                                <div class="card-footer text-muted bd-callout bd-callout-{{ trainings.1.status }}">
+                                    <span> Status :
+                                    {% if trainings.1.status == "False" %}
+                                        <i class="fas fa-times"></i>
+                                    {% else %}
+                                        <i class="fas fa-times"></i>
+                                    {% endif %}
+                                    </span>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    {% else %}
+                        <div class="card mb-3 bd-callout bd-callout-notraining">
+                            <div class="card-header">Rest day</div>
+                            <div class="card-body">
+                                <p class="card-text">
+                                    No training scheduled for this day, enjoy the rest !
+                                </p>
+                            </div>
+                        </div>
+                    {% endif %}
                 </div>
                 <div class="board-list">
                     <div class="list-title">
                         Tuesday
                     </div>
-                    <div class="card mb-3 bd-callout bd-callout-recuperation">
-                        <div class="card-header">Recuperation run</div>
-                        <div class="card-body">
-                            <h5 class="card-title">18/05 - Evening</h5>
-                            <p class="card-text">
-                                <ul>
-                                    <li><strong>Nb of km</strong>: 10 km</li>
-                                    <li><strong>Elevation gain</strong> : 100 D+</li>
-                                    <li><strong>Comments :</strong></li>
-                                    <p>Slow pace 50% FCM</p>
-                                </ul>
-                            </p>
-                            <div class="card-footer text-muted bd-callout bd-callout-todo">
-                                Status : <span class="todo">To Do</span>
+                    {% if trainings.2 is not none %}
+                        <div class="card mb-3 bd-callout bd-callout-{{trainings.2.trainingType}}">
+                            <div class="card-header">{{ trainings.2.trainingType }}</div>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ trainings.2.trainingDate }}</h5>
+                                <p class="card-text">
+                                    <ul>
+                                        <li><strong>Nb of km</strong>: {{ trainings.2.trainingKm }} km</li>
+                                        <li><strong>Elevation gain</strong>: {{ trainings.2.trainingD }} D+</li>
+                                        <li><strong>Comments :</strong></li>
+                                        <p>{{ trainings.2.trainingComments }}</p>
+                                    </ul>
+                                </p>
+                                <div class="card-footer text-muted bd-callout bd-callout-{{ trainings.2.status }}">
+                                    <span> Status :
+                                    {% if trainings.2.status == "False" %}
+                                        <i class="fas fa-times"></i>
+                                    {% else %}
+                                        <i class="fas fa-times"></i>
+                                    {% endif %}
+                                    </span>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    {% else %}
+                        <div class="card mb-3 bd-callout bd-callout-notraining">
+                            <div class="card-header">Rest day</div>
+                            <div class="card-body">
+                                <p class="card-text">
+                                    No training scheduled for this day, enjoy the rest !
+                                </p>
+                            </div>
+                        </div>
+                    {% endif %}
                 </div>
                 <div class="board-list">
                     <div class="list-title">
                         Wednesday
                     </div>
-                    <div class="card">
-                        Card 1
-                    </div>
+                    {% if trainings.3 is not none %}
+                        <div class="card mb-3 bd-callout bd-callout-{{trainings.3.trainingType}}">
+                            <div class="card-header">{{ trainings.3.trainingType }}</div>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ trainings.3.trainingDate }}</h5>
+                                <p class="card-text">
+                                    <ul>
+                                        <li><strong>Nb of km</strong>: {{ trainings.3.trainingKm }} km</li>
+                                        <li><strong>Elevation gain</strong>: {{ trainings.3.trainingD }} D+</li>
+                                        <li><strong>Comments :</strong></li>
+                                        <p>{{ trainings.3.trainingComments }}</p>
+                                    </ul>
+                                </p>
+                                <div class="card-footer text-muted bd-callout bd-callout-{{ trainings.3.status }}">
+                                    <span> Status :
+                                    {% if trainings.3.status == "False" %}
+                                        <i class="fas fa-times"></i>
+                                    {% else %}
+                                        <i class="fas fa-times"></i>
+                                    {% endif %}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="card mb-3 bd-callout bd-callout-notraining">
+                            <div class="card-header">Rest day</div>
+                            <div class="card-body">
+                                <p class="card-text">
+                                    No training scheduled for this day, enjoy the rest !
+                                </p>
+                            </div>
+                        </div>
+                    {% endif %}
                 </div>
                 <div class="board-list">
                     <div class="list-title">
                         Thursday
                     </div>
-                    <div class="card">
-                        Card 1
-                    </div>
+                    {% if trainings.4 is not none %}
+                        <div class="card mb-3 bd-callout bd-callout-{{trainings.4.trainingType}}">
+                            <div class="card-header">{{ trainings.4.trainingType }}</div>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ trainings.4.trainingDate }}</h5>
+                                <p class="card-text">
+                                    <ul>
+                                        <li><strong>Nb of km</strong>: {{ trainings.4.trainingKm }} km</li>
+                                        <li><strong>Elevation gain</strong>: {{ trainings.4.trainingD }} D+</li>
+                                        <li><strong>Comments :</strong></li>
+                                        <p>{{ trainings.4.trainingComments }}</p>
+                                    </ul>
+                                </p>
+                                <div class="card-footer text-muted bd-callout bd-callout-{{ trainings.4.status }}">
+                                    <span> Status :
+                                    {% if trainings.4.status == "False" %}
+                                        <i class="fas fa-times"></i>
+                                    {% else %}
+                                        <i class="fas fa-times"></i>
+                                    {% endif %}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="card mb-3 bd-callout bd-callout-notraining">
+                            <div class="card-header">Rest day</div>
+                            <div class="card-body">
+                                <p class="card-text">
+                                    No training scheduled for this day, enjoy the rest !
+                                </p>
+                            </div>
+                        </div>
+                    {% endif %}
                 </div>
                 <div class="board-list">
                     <div class="list-title">
                         Friday
                     </div>
-                    <div class="card">
-                        Card 1
-                    </div>
+                    {% if trainings.5 is not none %}
+                        <div class="card mb-3 bd-callout bd-callout-{{trainings.5.trainingType}}">
+                            <div class="card-header">{{ trainings.5.trainingType }}</div>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ trainings.5.trainingDate }}</h5>
+                                <p class="card-text">
+                                    <ul>
+                                        <li><strong>Nb of km</strong>: {{ trainings.5.trainingKm }} km</li>
+                                        <li><strong>Elevation gain</strong>: {{ trainings.5.trainingD }} D+</li>
+                                        <li><strong>Comments :</strong></li>
+                                        <p>{{ trainings.5.trainingComments }}</p>
+                                    </ul>
+                                </p>
+                                <div class="card-footer text-muted bd-callout bd-callout-{{ trainings.5.status }}">
+                                    <span> Status :
+                                    {% if trainings.5.status == "False" %}
+                                        <i class="fas fa-times"></i>
+                                    {% else %}
+                                        <i class="fas fa-times"></i>
+                                    {% endif %}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="card mb-3 bd-callout bd-callout-notraining">
+                            <div class="card-header">Rest day</div>
+                            <div class="card-body">
+                                <p class="card-text">
+                                    No training scheduled for this day, enjoy the rest !
+                                </p>
+                            </div>
+                        </div>
+                    {% endif %}
                 </div>
                 <div class="board-list">
                     <div class="list-title">
                         Sarturday
                     </div>
-                    <div class="card">
-                        Card 1
-                    </div>
+                    {% if trainings.6 is not none %}
+                        <div class="card mb-3 bd-callout bd-callout-{{trainings.6.trainingType}}">
+                            <div class="card-header">{{ trainings.6.trainingType }}</div>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ trainings.6.trainingDate }}</h5>
+                                <p class="card-text">
+                                    <ul>
+                                        <li><strong>Nb of km</strong>: {{ trainings.6.trainingKm }} km</li>
+                                        <li><strong>Elevation gain</strong>: {{ trainings.6.trainingD }} D+</li>
+                                        <li><strong>Comments :</strong></li>
+                                        <p>{{ trainings.6.trainingComments }}</p>
+                                    </ul>
+                                </p>
+                                <div class="card-footer text-muted bd-callout bd-callout-{{ trainings.6.status }}">
+                                    <span> Status :
+                                    {% if trainings.6.status == "False" %}
+                                        <i class="fas fa-times"></i>
+                                    {% else %}
+                                        <i class="fas fa-times"></i>
+                                    {% endif %}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="card mb-3 bd-callout bd-callout-notraining">
+                            <div class="card-header">Rest day</div>
+                            <div class="card-body">
+                                <p class="card-text">
+                                    No training scheduled for this day, enjoy the rest !
+                                </p>
+                            </div>
+                        </div>
+                    {% endif %}
                 </div>
                 <div class="board-list">
                     <div class="list-title">
                         Sunday
                     </div>
-                    <div class="card">
-                        Card 1
-                    </div>
+                    {% if trainings.7 is not none %}
+                        <div class="card mb-3 bd-callout bd-callout-{{trainings.7.trainingType}}">
+                            <div class="card-header">{{ trainings.7.trainingType }}</div>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ trainings.7.trainingDate }}</h5>
+                                <p class="card-text">
+                                    <ul>
+                                        <li><strong>Nb of km</strong>{{ trainings.7.trainingKm }}: km</li>
+                                        <li><strong>Elevation gain</strong>{{ trainings.7.trainingD }}: D+</li>
+                                        <li><strong>Comments :</strong></li>
+                                        <p>{{ trainings.7.trainingComments }}</p>
+                                    </ul>
+                                </p>
+                                <div class="card-footer text-muted bd-callout bd-callout-{{ trainings.7.status }}">
+                                    <span> Status :
+                                    {% if trainings.7.status == "False" %}
+                                        <i class="fas fa-times"></i>
+                                    {% else %}
+                                        <i class="fas fa-times"></i>
+                                    {% endif %}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="card mb-3 bd-callout bd-callout-notraining">
+                            <div class="card-header">Rest day</div>
+                            <div class="card-body">
+                                <p class="card-text">
+                                    No training scheduled for this day, enjoy the rest !
+                                </p>
+                            </div>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
