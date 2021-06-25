@@ -19,6 +19,8 @@ class Training(models.Model):
         TrainingResume, on_delete=models.CASCADE)
     trainingDate = models.DateField(
         "Date of training", default=timezone.now)
+    trainingDateWeekNb = models.IntegerField(default=0)
+    trainingDateDayStr = models.CharField(default="0", max_length=3)
     trainingType = models.CharField(max_length=40, default="")
     trainingKm = models.IntegerField(default=0)
     trainingD = models.IntegerField(default=0)
@@ -27,4 +29,7 @@ class Training(models.Model):
     feeling = models.IntegerField(default=0)
 
     def __str__(self) -> str:
-        return f"Training date : {self.trainingDate}"
+        return f"{self.trainingType} from the {self.trainingDate}"
+
+    class Meta:
+        ordering = ["trainingDate"]
