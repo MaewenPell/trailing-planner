@@ -36,15 +36,76 @@
                 <div class="mx-auto main-obj">
                     <h1>{{sport_profil.final_objectif_name}}</h1>
                     <h2>{{sport_profil.final_objectif_km}} Km- {{sport_profil.final_objectif_deniv}}D+</h2>
-                    <h3> XXXXX Cheers Up </h3>
                 </div>
                 <div class="card mb-3 bd-callout bd-callout-intensive">
                     <div class="card-body">
                         <p class="card-text">
-                            <h2>Weekly training evolution</h2>
+                        <h2>Weekly training evolution</h2>
                         <div class="graphContainer">
-                            <div id="progressChartWeek"></div>
-                            <div id="progressChartMonth"></div>
+                            <canvas id="chartEvolution" width="1000" height="300"></canvas>
+                            <script src="https://cdn.jsdelivr.net/npm/chart.js@3.4.1/dist/chart.min.js"></script>
+                            <script type="text/javascript">
+                                var config = {
+                                    type: 'line',
+                                    data: {
+                                        datasets: [{
+                                            data: {{ all_km | safe }},
+                                            borderColor: 'rgba(45, 201, 151, 1)',
+                                            backgroundColor: 'rgba(45, 201, 151, 0.25)',
+                                            label: 'Kilometers',
+                                            tension: 0.3,
+                                            fill: {
+                                                target: 'origin',
+                                            },
+                                            yAxisID: 'y',
+                                        },
+                                        {
+                                            data: {{ all_deniv | safe }},
+                                            borderColor: 'rgb(248, 203, 0)',
+                                            backgroundColor: 'rgba(248, 203, 0, 0.25)',
+                                            label: 'Elevation gain',
+                                            tension: 0.3,
+                                            fill: {
+                                                target: 'origin',
+                                            },
+                                            yAxisID: 'y1',
+                                        }],
+                                        labels: ["Monday", "Tuesday", "Wednesday", "Thursday",
+                                                 "Friday", "Sarturday", "Sunday"],
+                                    },
+                                    options: {
+                                        responsive: true,
+                                        scales: {
+                                            y: {
+                                                type: 'linear',
+                                                display: true,
+                                                position: 'left',
+                                                title: {
+                                                    display: true,
+                                                    text : "Number of kilometers ran",
+                                                }
+                                            },
+                                            y1: {
+                                                type: 'linear',
+                                                display: true,
+                                                position: 'right',
+                                                title: {
+                                                    display: true,
+                                                    text: "Number of meters climbed",
+                                                },
+                                                grid: {
+                                                    drawOnChartArea: false,
+                                                },
+                                            }
+                                        }
+                                        }
+                                    };
+
+                                    window.onload = function() {
+                                    var ctx = document.getElementById('chartEvolution').getContext('2d');
+                                    window.Chart = new Chart(ctx, config);
+                                    };
+                            </script>
                         </div>
                     </div>
                 </div>
@@ -81,12 +142,24 @@
                                     {% if trainings.1.status == "False" %}
                                         <i class="fas fa-times"></i>
                                     {% else %}
-                                        <i class="fas fa-times"></i>
+                                        <i class="fas fa-check"></i>
                                     {% endif %}
                                     </span>
                                 </div>
                             </div>
                         </div>
+                        {% if trainings.1.status == False %}
+                                    <form method="POST" id="mark-as-done" action="{% url 'training-done' %}">
+                                        {% csrf_token %}
+                                        <div class="mb-3 form-check form-switch">
+                                            <input type="hidden" value="{{ trainings.1 }}" name="training">
+                                            <input class="form-check-input" type="checkbox" id="runDone" name="runDone">
+                                            <label class="form-check-label" for="runDone">I have finish this training</label>
+
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                        </div>
+                                    </form>
+                        {% endif %}
                     {% else %}
                         <div class="card mb-3 bd-callout bd-callout-notraining">
                             <div class="card-header">Rest day</div>
@@ -117,15 +190,27 @@
                                 </p>
                                 <div class="card-footer text-muted bd-callout bd-callout-{{ trainings.2.status }}">
                                     <span> Status :
-                                    {% if trainings.2.status == "False" %}
+                                    {% if trainings.2.status == False %}
                                         <i class="fas fa-times"></i>
                                     {% else %}
-                                        <i class="fas fa-times"></i>
+                                        <i class="fas fa-check"></i>
                                     {% endif %}
                                     </span>
                                 </div>
                             </div>
                         </div>
+                        {% if trainings.2.status == False %}
+                            <form method="POST" id="mark-as-done" action="{% url 'training-done' %}">
+                                {% csrf_token %}
+                                <div class="mb-3 form-check form-switch">
+                                    <input type="hidden" value="{{ trainings.2 }}" name="training">
+                                    <input class="form-check-input" type="checkbox" id="runDone" name="runDone">
+                                    <label class="form-check-label" for="runDone">I have finish this training</label>
+
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </form>
+                        {% endif %}
                     {% else %}
                         <div class="card mb-3 bd-callout bd-callout-notraining">
                             <div class="card-header">Rest day</div>
@@ -156,15 +241,27 @@
                                 </p>
                                 <div class="card-footer text-muted bd-callout bd-callout-{{ trainings.3.status }}">
                                     <span> Status :
-                                    {% if trainings.3.status == "False" %}
-                                        <i class="fas fa-times"></i>
-                                    {% else %}
-                                        <i class="fas fa-times"></i>
-                                    {% endif %}
+                                        {% if trainings.3.status == False %}
+                                            <i class="fas fa-times"></i>
+                                        {% else %}
+                                            <i class="fas fa-check"></i>
+                                        {% endif %}
                                     </span>
                                 </div>
                             </div>
                         </div>
+                        {% if trainings.3.status == False %}
+                            <form method="POST" id="mark-as-done" action="{% url 'training-done' %}">
+                                {% csrf_token %}
+                                <div class="mb-3 form-check form-switch">
+                                    <input type="hidden" value="{{ trainings.3 }}" name="training">
+                                    <input class="form-check-input" type="checkbox" id="runDone" name="runDone">
+                                    <label class="form-check-label" for="runDone">I have finish this training</label>
+
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </form>
+                        {% endif %}
                     {% else %}
                         <div class="card mb-3 bd-callout bd-callout-notraining">
                             <div class="card-header">Rest day</div>
@@ -195,14 +292,26 @@
                                 </p>
                                 <div class="card-footer text-muted bd-callout bd-callout-{{ trainings.4.status }}">
                                     <span> Status :
-                                    {% if trainings.4.status == "False" %}
+                                    {% if trainings.4.status == False %}
                                         <i class="fas fa-times"></i>
                                     {% else %}
-                                        <i class="fas fa-times"></i>
+                                        <i class="fas fa-check"></i>
                                     {% endif %}
                                     </span>
                                 </div>
                             </div>
+                            {% if trainings.4.status == False %}
+                                <form method="POST" id="mark-as-done" action="{% url 'training-done' %}">
+                                    {% csrf_token %}
+                                    <div class="mb-3 form-check form-switch">
+                                        <input type="hidden" value="{{ trainings.4 }}" name="training">
+                                        <input class="form-check-input" type="checkbox" id="runDone" name="runDone">
+                                        <label class="form-check-label" for="runDone">I have finish this training</label>
+
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </form>
+                            {% endif %}
                         </div>
                     {% else %}
                         <div class="card mb-3 bd-callout bd-callout-notraining">
@@ -234,13 +343,25 @@
                                 </p>
                                 <div class="card-footer text-muted bd-callout bd-callout-{{ trainings.5.status }}">
                                     <span> Status :
-                                    {% if trainings.5.status == "False" %}
+                                    {% if trainings.5.status == False %}
                                         <i class="fas fa-times"></i>
                                     {% else %}
-                                        <i class="fas fa-times"></i>
+                                        <i class="fas fa-check"></i>
                                     {% endif %}
                                     </span>
                                 </div>
+                                {% if trainings.5.status == False %}
+                                    <form method="POST" id="mark-as-done" action="{% url 'training-done' %}">
+                                        {% csrf_token %}
+                                        <div class="mb-3 form-check form-switch">
+                                            <input type="hidden" value="{{ trainings.5 }}" name="training">
+                                            <input class="form-check-input" type="checkbox" id="runDone" name="runDone">
+                                            <label class="form-check-label" for="runDone">I have finish this training</label>
+
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                        </div>
+                                    </form>
+                                {% endif %}
                             </div>
                         </div>
                     {% else %}
@@ -273,14 +394,26 @@
                                 </p>
                                 <div class="card-footer text-muted bd-callout bd-callout-{{ trainings.6.status }}">
                                     <span> Status :
-                                    {% if trainings.6.status == "False" %}
+                                    {% if trainings.6.status == False %}
                                         <i class="fas fa-times"></i>
                                     {% else %}
-                                        <i class="fas fa-times"></i>
+                                        <i class="fas fa-check"></i>
                                     {% endif %}
                                     </span>
                                 </div>
                             </div>
+                            {% if trainings.6.status == False %}
+                                <form method="POST" id="mark-as-done" action="{% url 'training-done' %}">
+                                    {% csrf_token %}
+                                    <div class="mb-3 form-check form-switch">
+                                        <input type="hidden" value="{{ trainings.6 }}" name="training">
+                                        <input class="form-check-input" type="checkbox" id="runDone" name="runDone">
+                                        <label class="form-check-label" for="runDone">I have finish this training</label>
+
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </form>
+                            {% endif %}
                         </div>
                     {% else %}
                         <div class="card mb-3 bd-callout bd-callout-notraining">
@@ -297,29 +430,41 @@
                     <div class="list-title">
                         Sunday
                     </div>
-                    {% if trainings.7 is not none %}
-                        <div class="card mb-3 bd-callout bd-callout-{{trainings.7.trainingType}}">
-                            <div class="card-header">{{ trainings.7.trainingType }}</div>
+                    {% if trainings.0 is not none %}
+                        <div class="card mb-3 bd-callout bd-callout-{{trainings.0.trainingType}}">
+                            <div class="card-header">{{ trainings.0.trainingType }}</div>
                             <div class="card-body">
-                                <h5 class="card-title">{{ trainings.7.trainingDate }}</h5>
+                                <h5 class="card-title">{{ trainings.0.trainingDate }}</h5>
                                 <p class="card-text">
                                     <ul>
-                                        <li><strong>Nb of km</strong>{{ trainings.7.trainingKm }}: km</li>
-                                        <li><strong>Elevation gain</strong>{{ trainings.7.trainingD }}: D+</li>
+                                        <li><strong>Nb of km</strong>{{ trainings.0.trainingKm }}: km</li>
+                                        <li><strong>Elevation gain</strong>{{ trainings.0.trainingD }}: D+</li>
                                         <li><strong>Comments :</strong></li>
-                                        <p>{{ trainings.7.trainingComments }}</p>
+                                        <p>{{ trainings.0.trainingComments }}</p>
                                     </ul>
                                 </p>
-                                <div class="card-footer text-muted bd-callout bd-callout-{{ trainings.7.status }}">
+                                <div class="card-footer text-muted bd-callout bd-callout-{{ trainings.0.status }}">
                                     <span> Status :
-                                    {% if trainings.7.status == "False" %}
+                                    {% if trainings.0.status == False %}
                                         <i class="fas fa-times"></i>
                                     {% else %}
-                                        <i class="fas fa-times"></i>
+                                        <i class="fas fa-check"></i>
                                     {% endif %}
                                     </span>
                                 </div>
                             </div>
+                            {% if trainings.0.status == False %}
+                                <form method="POST" id="mark-as-done" action="{% url 'training-done' %}">
+                                    {% csrf_token %}
+                                    <div class="mb-3 form-check form-switch">
+                                        <input type="hidden" value="{{ trainings.0 }}" name="training">
+                                        <input class="form-check-input" type="checkbox" id="runDone" name="runDone">
+                                        <label class="form-check-label" for="runDone">I have finish this training</label>
+
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </form>
+                            {% endif %}
                         </div>
                     {% else %}
                         <div class="card mb-3 bd-callout bd-callout-notraining">
@@ -334,23 +479,10 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-12" style="display: flex; flex-direction: row;">
-            <div style="display:flex; flex-grow: 1;">
-                <p class="previous-week"><a href="/">
-                        <- Previous week</a> </p> </div> <div class="training-week" style="display:flex; flex-grow: 2;">
-                            <p class="mx-auto">Training week 21 / 25
-                                <p />
-            </div>
-            <div style="display:flex; flex-grow: 1;">
-                <p class="previous-week"><a href="/">Next week -></a></p>
-            </div>
-        </div>
     </div>
 </body>
 
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script src="https://code.highcharts.com/highcharts.src.js"></script>
-<script type="text/javascript" src="{% static 'js/planner_main.js' %}"></script>
 
 </html>
