@@ -64,8 +64,10 @@ class DBQuery():
         Training.objects.create(
             trainingListResume=training_res,
             trainingDate=date(year=year, month=month, day=day),
-            trainingDateWeekNb=int(date(year, month, day).strftime("%V")),
             trainingDateDayStr=date(year, month, day).strftime("%w"),
+            trainingDateWeekNb=int(date(year, month, day).strftime("%V")),
+            trainingDateMonthNb=date(year, month, day).strftime("%b"),
+            trainingDateYearNb=int(date(year, month, day).strftime("%Y")),
             trainingType=new_training['trainingType'],
             trainingKm=new_training['trainingKm'],
             trainingD=new_training['trainingD'],
@@ -74,10 +76,28 @@ class DBQuery():
             feeling=0,
         )
 
-    def get_trainings(self, week_number):
+    def get_week_trainings(self, week_number):
         training_res = TrainingResume.objects.get(
             sportProfilRelated=SportProfil.objects.get(user=self.user))
         c1 = Q(trainingListResume=training_res)
         c2 = Q(trainingDateWeekNb=week_number)
         trainings = Training.objects.filter(c1 & c2)
         return trainings
+
+    def get_month_trainings(self, month):
+        training_res = TrainingResume.objects.get(
+            sportProfilRelated=SportProfil.objects.get(user=self.user))
+        c1 = Q(trainingListResume=training_res)
+        c2 = Q(trainingDateMonthNb=month)
+        trainings = Training.objects.filter(c1 & c2)
+        return trainings
+
+    def update_training(self, request):
+        if request['runDone'] == "on":
+            training_res = TrainingResume.objects.get(
+                sportProfilRelated=SportProfil.objects.get(user=self.user))
+            c1 = Q(trainingListResume=training_res)
+            c2 = Q(trainingDate=request['training'][-10:])
+            t = Training.objects.filter(c1 & c2).first()
+            t.status = True
+            t.save()

@@ -20,6 +20,8 @@ class Training(models.Model):
     trainingDate = models.DateField(
         "Date of training", default=timezone.now)
     trainingDateWeekNb = models.IntegerField(default=0)
+    trainingDateMonthNb = models.CharField(max_length=20, default="")
+    trainingDateYearNb = models.IntegerField(default=2021)
     trainingDateDayStr = models.CharField(default="0", max_length=3)
     trainingType = models.CharField(max_length=40, default="")
     trainingKm = models.IntegerField(default=0)

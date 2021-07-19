@@ -57,14 +57,14 @@
                                     <p>
                             </div>
                             <div class="bio-row">
-                                <p><span>Final objectif</span>: {{final_objectif_name}}</p>
+                                <p><span>Final objectif</span>: {{sport_profil.final_objectif_name}}</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <span>
                 </span>
-                {% if final_objectif_name|length < 1 %}
+                {% if sport_profil.final_objectif_name|length < 1 %}
                 <div class="container-sport-profil">
                     <h1>Please fill your sport profil</h1>
                     <form method="POST" id="sport-profil-form" action="{% url 'createSportProfil' %}">
@@ -106,44 +106,73 @@
                 {% endcomment %}
                 <div>
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="panel">
                             <h2 class="title-run">Monthly progress</h2>
-                            <div class="panel">
-                                <div class="panel-body-chart">
-                                    <div class="bio-desk">
-                                        <h3>Kilometers ran</h3>
-                                        <p>Expected : 500</p>
-                                        <p>Actual : 350</p>
-                                    </div>
-                                    <div id="MonthlyProgress"></div>
-                                    <div class="bio-desk">
-                                        <h3>Meters climbed</h3>
-                                        <p>Expected : 5000</p>
-                                        <p>Actual : 3000</p>
-                                    </div>
-                                    <div id="MonthlyProgressD+"></div>
-                                </div>
-                            </div>
+                           <canvas id="chartEvolution" width="1000" height="300"></canvas>
+                            <script src="https://cdn.jsdelivr.net/npm/chart.js@3.4.1/dist/chart.min.js"></script>
+                            <script type="text/javascript">
+                                var config = {
+                                    type: 'line',
+                                    data: {
+                                        datasets: [{
+                                            data: {{ all_km | safe }},
+                                            borderColor: 'rgba(45, 201, 151, 1)',
+                                            backgroundColor: 'rgba(45, 201, 151, 0.25)',
+                                            label: 'Kilometers',
+                                            tension: 0.3,
+                                            fill: {
+                                                target: 'origin',
+                                            },
+                                            yAxisID: 'y',
+                                        },
+                                        {
+                                            data: {{ all_deniv | safe }},
+                                            borderColor: 'rgb(248, 203, 0)',
+                                            backgroundColor: 'rgba(248, 203, 0, 0.25)',
+                                            label: 'Elevation gain',
+                                            tension: 0.3,
+                                            fill: {
+                                                target: 'origin',
+                                            },
+                                            yAxisID: 'y1',
+                                        }],
+                                        labels: {{ labels }},
+                                    },
+                                    options: {
+                                        responsive: true,
+                                        scales: {
+                                            y: {
+                                                type: 'linear',
+                                                display: true,
+                                                position: 'left',
+                                                title: {
+                                                    display: true,
+                                                    text : "Number of kilometers ran",
+                                                }
+                                            },
+                                            y1: {
+                                                type: 'linear',
+                                                display: true,
+                                                position: 'right',
+                                                title: {
+                                                    display: true,
+                                                    text: "Number of meters climbed",
+                                                },
+                                                grid: {
+                                                    drawOnChartArea: false,
+                                                },
+                                            }
+                                        }
+                                        }
+                                    };
+
+                                    window.onload = function() {
+                                    var ctx = document.getElementById('chartEvolution').getContext('2d');
+                                    window.Chart = new Chart(ctx, config);
+                                    };
+                            </script>
                         </div>
-                        <div class="col-md-6">
-                            <h2 class="title-run">Yearly progress</h2>
-                            <div class="panel">
-                                <div class="panel-body-chart">
-                                    <div class="bio-desk">
-                                        <h3>Kilometers ran</h3>
-                                        <p>Expected : 500</p>
-                                        <p>Actual : 350</p>
-                                    </div>
-                                    <div id="YearlyProgress"></div>
-                                    <div class="bio-desk">
-                                        <h3>Meters climbed</h3>
-                                        <p>Expected : 5000</p>
-                                        <p>Actual : 3000</p>
-                                    </div>
-                                    <div id="YearlyProgressD+"></div>
-                                </div>
-                            </div>
-                        </div>
+
                         <div class="col-md-12">
                             <h2 class="title-run">All time progress</h2>
                             <div class="panel">
@@ -165,8 +194,6 @@
                         </div>
                     </div>
                 </div>
-                <div id="myDiv" style="width:100%;height:250px;"></div>
-                <div id="container-speed" class="chart-container"></div>
                 {% endif %}
             </div>
         </div>

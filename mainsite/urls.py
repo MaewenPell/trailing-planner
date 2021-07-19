@@ -8,5 +8,6 @@ urlpatterns = [
     path('planner/', views.planner, name="planner"),
     path('addnewtraining/', views.addNewTraining, name="add_new_training"),
     path('createnewtraining/',
-         views.createNewTraining, name="create-new-training")
+         views.createNewTraining, name="create-new-training"),
+    path('trainingDone/', views.trainingDone, name="training-done")
 ]

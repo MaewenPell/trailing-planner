@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from user_profil.db_query import DBQuery
+from mainsite.utils import generate_running_data
 import datetime
 
 
@@ -13,18 +14,12 @@ def wallOfFame(request):
 
 def planner(request):
     if request.user.is_authenticated:
-        current_week = datetime.date.today().isocalendar()[1]
         Curr_user = DBQuery(request.user)
         _, sport_profil = Curr_user.get_user_profil()
-        trainings = Curr_user.get_trainings(current_week)
+        trainings = Curr_user.get_week_trainings(
+            datetime.date.today().isocalendar()[1])
 
-        context = {
-            "sport_profil": sport_profil,
-            "trainings": {}
-        }
-
-        for elem in trainings:
-            context["trainings"][elem.trainingDateDayStr] = elem
+        context = generate_running_data(sport_profil, trainings)
 
         return render(request, 'planner.html', context)
     else:
@@ -41,3 +36,9 @@ def createNewTraining(request):
         return redirect("planner")
     else:
         redirect("register")
+
+
+def trainingDone(request):
+    if request.user.is_authenticated:
+        DBQuery(request.user).update_training(request.POST)
+        return redirect("planner")
