@@ -50,7 +50,7 @@
 				<form class="login100-form validate-form p-b-25 p-t-5" method="POST" action="{% url 'connectUser' %}">
 					{% csrf_token %}
 					<div class="wrap-input100 validate-input" data-validate = "Enter username">
-						<input class="input100" type="text" name="username" placeholder="User name">
+						<input class="input100" type="text" name="username" placeholder="Username*">
 						<span class="focus-input100" data-placeholder="&#xe82a;"></span>
 					</div>
 
@@ -64,6 +64,9 @@
 							Login
 						</button>
 					</div>
+					<p class="lint">
+						* Username is the firstname + the first letter of last name
+					</p>
 					<p class="loginhere">
                         Do not have an account ? <a href="{% url 'register' %}" class="loginhere-link">Register here</a>
                     </p>

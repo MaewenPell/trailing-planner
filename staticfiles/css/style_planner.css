@@ -169,7 +169,11 @@ li {
 }
 
 .card-header {
+    text-align: center;
     font-size: x-large;
+    background-color: rgba(211, 211, 211, 0.20);
+    border-radius: 5px !important;
+    border: none;
 }
 
 .resume {
@@ -212,12 +216,8 @@ li {
     background-color: white;
     border-left-color: rgb(233, 236, 239);
     border-left-width: .5rem;
-    border-radius: .5rem;
-}
+    border-radius: .5rem;}
 
-.card-header {
-    text-align: center;
-}
 
 .training-week {
     color: white;

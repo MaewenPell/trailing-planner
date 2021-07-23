@@ -10,8 +10,8 @@ def profil(request):
         _, sport_profil = Curr_user.get_user_profil()
 
         month_trainings = Curr_user.get_month_trainings(
-            datetime.now().strftime("%b")
-        )
+            datetime.now().strftime("%b"))
+
         context = generate_running_data_profil(sport_profil, month_trainings)
 
         return render(request, 'profil.html', context)

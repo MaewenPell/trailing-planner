@@ -421,8 +421,8 @@ ul.summary-list>li:last-child {
 .container-sport-profil {
     display: flex;
     flex-direction: column;
-    width: 50%;
     margin: auto;
+    background-color: white;
 }
 
 .container-sport-profil h1 {
