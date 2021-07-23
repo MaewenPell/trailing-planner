@@ -37,7 +37,9 @@
 
                     <ul class="nav nav-pills nav-stacked">
                         <li active><a href="#"><i class="fa fa-edit"></i>Edit profile</a></li>
-                        <li active><a href="{% url 'planner' %}"><i class="far fa-calendar-alt"></i></i>Training Plan</a></li>
+                        {% if sport_profil.final_objectif_name|length > 1 %}
+                            <li active><a href="{% url 'planner' %}"><i class="far fa-calendar-alt"></i></i>Training Plan</a></li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>
@@ -65,7 +67,7 @@
                 <span>
                 </span>
                 {% if sport_profil.final_objectif_name|length < 1 %}
-                <div class="container-sport-profil">
+                <div class="panel-body container-sport-profil">
                     <h1>Please fill your sport profil</h1>
                     <form method="POST" id="sport-profil-form" action="{% url 'createSportProfil' %}">
                         {% csrf_token %}
@@ -90,14 +92,15 @@
                                 placeholder="when it'll happen ?">
                         </div>
 
-                        <hr>
 
                         <div class="mb-3">
                             <label for="stravaLink" class="form-label">Strava profil</label>
                             <input class="form-control" name="stravaLink" placeholder="Show us what you got !">
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <div style="text-align: center;">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
                     </form>
                 </div>
                 {% else %}

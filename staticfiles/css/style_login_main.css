@@ -532,3 +532,10 @@ iframe {
         opacity: 1;
     }
 }
+
+.lint {
+    color: #868686;
+    font-size: 1.3vh;
+    text-align: center;
+    margin-top: 3vh;
+}

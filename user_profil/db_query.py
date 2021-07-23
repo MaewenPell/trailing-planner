@@ -1,4 +1,3 @@
-from user_profil.models import SportProfil
 from mainsite.models import Training, TrainingResume, SportProfil
 from django.contrib.auth.models import User
 from datetime import date
@@ -77,19 +76,26 @@ class DBQuery():
         )
 
     def get_week_trainings(self, week_number):
-        training_res = TrainingResume.objects.get(
-            sportProfilRelated=SportProfil.objects.get(user=self.user))
-        c1 = Q(trainingListResume=training_res)
-        c2 = Q(trainingDateWeekNb=week_number)
-        trainings = Training.objects.filter(c1 & c2)
+        try:
+            training_res = TrainingResume.objects.get(
+                sportProfilRelated=SportProfil.objects.get(user=self.user))
+            c1 = Q(trainingListResume=training_res)
+            c2 = Q(trainingDateWeekNb=week_number)
+            trainings = Training.objects.filter(c1 & c2)
+        except SportProfil.DoesNotExist:
+            trainings = []
         return trainings
 
     def get_month_trainings(self, month):
-        training_res = TrainingResume.objects.get(
-            sportProfilRelated=SportProfil.objects.get(user=self.user))
-        c1 = Q(trainingListResume=training_res)
-        c2 = Q(trainingDateMonthNb=month)
-        trainings = Training.objects.filter(c1 & c2)
+        try:
+            training_res = TrainingResume.objects.get(
+                sportProfilRelated=SportProfil.objects.get(user=self.user))
+            c1 = Q(trainingListResume=training_res)
+            c2 = Q(trainingDateMonthNb=month)
+            trainings = Training.objects.filter(c1 & c2)
+        except SportProfil.DoesNotExist:
+            trainings = []
+
         return trainings
 
     def update_training(self, request):
