@@ -22,7 +22,6 @@
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="inputGroupSelect01">Training Type</label>
                     <select class="form-select" id="trainingType" name="trainingType">
-                        <option selected>Choose...</option>
                         <option value="Recovery run">Recovery Run</option>
                         <option value="Intensive run">Intensive Run</option>
                         <option value="Goal like run">Goal-like Run</option>
@@ -31,8 +30,9 @@
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label for="trainingDate" class="form-label">When will you train ?</label>
+                    <label for="trainingDate" class="form-label">When will you train this week?</label>
                     <input class="form-control" type="date" name="trainingDate"
+                        min={{ first_day }} max={{ last_day }}
                         placeholder="What is the name of your main objectif">
                 </div>
                 <div class="mb-3">

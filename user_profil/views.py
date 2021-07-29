@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from user_profil.db_query import DBQuery
-from user_profil.utils import generate_running_data_profil
+from user_profil.utils import (generate_running_data_profil,
+                               get_all_trainings_data)
 from datetime import datetime
 
 
@@ -12,7 +13,12 @@ def profil(request):
         month_trainings = Curr_user.get_month_trainings(
             datetime.now().strftime("%b"))
 
+        all_trainings = Curr_user.get_all_trainings()
+
         context = generate_running_data_profil(sport_profil, month_trainings)
+        list_all_trainings = get_all_trainings_data(all_trainings)
+
+        context["all_trainings"] = list_all_trainings
 
         return render(request, 'profil.html', context)
     else:

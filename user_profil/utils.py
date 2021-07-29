@@ -26,3 +26,23 @@ def generate_running_data_profil(sport_profil, trainings):
         context["all_deniv"].append(deniv_done[elem])
 
     return context
+
+
+def get_all_trainings_data(all_trainings):
+    list_all_trainings = {
+        "km": [],
+        "deniv": [],
+        "total_km": 0,
+        "total_d": 0,
+        "nb_trainings": 0,
+    }
+    for training in all_trainings:
+        list_all_trainings["km"].append(training.trainingKm)
+        list_all_trainings["deniv"].append(training.trainingD)
+
+    list_all_trainings["nb_trainings"] = len(
+        list_all_trainings["km"])
+    list_all_trainings["total_d"] = sum(list_all_trainings["deniv"])
+    list_all_trainings["total_km"] = sum(list_all_trainings["km"])
+
+    return list_all_trainings
