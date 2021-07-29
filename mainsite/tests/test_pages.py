@@ -1,7 +1,7 @@
-from django.test import SimpleTestCase
+from django.test import SimpleTestCase, TestCase
 
 
-class HomePageTest(SimpleTestCase):
+class HomePageTest(TestCase):
     def test_landing_page_url_exists_at_desired_location(self) -> None:
         self.assertEquals(self.client.get('').status_code, 200)
 
@@ -11,14 +11,14 @@ class HomePageTest(SimpleTestCase):
             '<h1><a href="#hero">Trailing Planner</a></h1>')
 
 
-class PlannerPageTest(SimpleTestCase):
+class PlannerPageTest(TestCase):
     def test_planner_page_url_exists_at_desired_location(self) -> None:
         self.assertRedirects(
             self.client.get("/planner/"), "/users/register/",
             302, fetch_redirect_response=True)
 
 
-class WallOfFamePageTest(SimpleTestCase):
+class WallOfFamePageTest(TestCase):
     def test_walloffame_page_url_exists_at_desired_location(self) -> None:
         self.assertEquals(self.client.get("/walloffame/").status_code, 200)
 
