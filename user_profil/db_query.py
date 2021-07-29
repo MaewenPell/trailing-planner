@@ -11,7 +11,7 @@ class DBQuery():
     def get_user_profil(self) -> tuple:
         try:
             sport_profil_user = SportProfil.objects.get(user=self.user)
-            training_res, created = TrainingResume.objects.get_or_create(
+            training_res, _ = TrainingResume.objects.get_or_create(
                 sportProfilRelated=SportProfil.objects.get(user=self.user))
             context = {
                 'user': {
@@ -93,6 +93,17 @@ class DBQuery():
             c1 = Q(trainingListResume=training_res)
             c2 = Q(trainingDateMonthNb=month)
             trainings = Training.objects.filter(c1 & c2)
+        except SportProfil.DoesNotExist:
+            trainings = []
+
+        return trainings
+
+    def get_all_trainings(self):
+        try:
+            training_res = TrainingResume.objects.get(
+                sportProfilRelated=SportProfil.objects.get(user=self.user))
+            c1 = Q(trainingListResume=training_res)
+            trainings = Training.objects.filter(c1)
         except SportProfil.DoesNotExist:
             trainings = []
 

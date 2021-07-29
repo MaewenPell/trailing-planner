@@ -126,24 +126,19 @@
         <div class="row counters">
 
   				<div class="col-lg-3 col-6 text-center">
-            <span data-toggle="counter-up">232</span>
+            <span data-toggle="counter-up">{{ nb_runners }}</span>
             <p>Registered Runners</p>
   				</div>
 
           <div class="col-lg-3 col-6 text-center">
-            <span data-toggle="counter-up">521</span>
+            <span data-toggle="counter-up">{{ km_ran }}</span>
             <p>Km</p>
   				</div>
 
           <div class="col-lg-3 col-6 text-center">
-            <span data-toggle="counter-up">1,463</span>
+            <span data-toggle="counter-up">{{ elevation_gained }}</span>
             <p>Elevation gain</p>
   				</div>
-
-          <div class="col-lg-3 col-6 text-center">
-            <span data-toggle="counter-up">15</span>
-            <p>Today's km ran</p>
-  	  		</div>
 
   			</div>
 
@@ -169,58 +164,6 @@
     </section><!-- #call-to-action -->
 
     <!--==========================
-      Portfolio Section
-    ============================-->
-    <section id="portfolio">
-      <div class="container wow fadeInUp">
-        <div class="section-header">
-          <h3 class="section-title">Highlighted Pofiles</h3>
-          <p class="section-description">Take example of our community, consult, advise, encourage !</p>
-        </div>
-        <div class="row" id="portfolio-wrapper">
-          <div class="col-lg-3 col-md-6 portfolio-item filter-app">
-            <a href="">
-              <img src="{% static "assets/portfolio/app1.jpg" %}" alt="">
-              <div class="details">
-                <h4>App 1</h4>
-                <span>Alored dono par</span>
-              </div>
-            </a>
-          </div>
-
-          <div class="col-lg-3 col-md-6 portfolio-item filter-web">
-            <a href="">
-              <img src="{% static "assets/portfolio/web2.jpg" %}"alt="">
-              <div class="details">
-                <h4>Web 2</h4>
-                <span>Alored dono par</span>
-              </div>
-            </a>
-          </div>
-
-          <div class="col-lg-3 col-md-6 portfolio-item filter-app">
-            <a href="">
-              <img src="{% static "assets/portfolio/app3.jpg" %}" alt="">
-              <div class="details">
-                <h4>App 3</h4>
-                <span>Alored dono par</span>
-              </div>
-            </a>
-          </div>
-
-          <div class="col-lg-3 col-md-6 portfolio-item filter-card">
-            <a href="">
-              <img src="{% static 'assets/portfolio/card1.jpg' %}" alt="">
-              <div class="details">
-                <h4>Card 1</h4>
-                <span>Alored dono par</span>
-              </div>
-            </a>
-          </div>
-      </div>
-    </section><!-- #portfolio -->
-
-    <!--==========================
       Contact Section
     ============================-->
     <section id="contact">
@@ -237,7 +180,7 @@
             <div class="info">
               <div class="first">
                 <i class="fa fa-envelope"></i>
-                <p>info@example.com</p>
+                <p>maewen.p[@]gmail.com</p>
               </div>
               <div>
                 <i class="fab fa-linkedin-in"></i>
