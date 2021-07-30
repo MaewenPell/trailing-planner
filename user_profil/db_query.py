@@ -71,7 +71,7 @@ class DBQuery():
             trainingKm=new_training['trainingKm'],
             trainingD=new_training['trainingD'],
             trainingComments=new_training['trainingComments'],
-            status=False,
+            status=new_training['status'],
             feeling=0,
         )
 

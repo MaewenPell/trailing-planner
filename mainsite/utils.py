@@ -17,6 +17,8 @@ def generate_running_data(sport_profil, trainings):
     for elem in trainings:
         context["trainings"][elem.trainingDateDayStr] = elem
         if elem.status is True:
+            if elem.trainingDateDayStr == '0':
+                elem.trainingDateDayStr = '7'
             km_done[elem.trainingDateDayStr] = elem.trainingKm
             deniv_done[elem.trainingDateDayStr] = elem.trainingD
 

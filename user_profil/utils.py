@@ -4,7 +4,7 @@ def generate_running_data_profil(sport_profil, trainings):
         "trainings": {},
         "all_km": [],
         "all_deniv": [],
-        "labels": [i for i in range(0, 31)]
+        "labels": [i for i in range(0, 32)]
     }
 
     km_done = {}
