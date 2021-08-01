@@ -19,6 +19,15 @@ class TestDBQuery(TestCase):
             're_password': "test1234&"
         }
 
+        cls.new_training = {
+            'trainingDate': "2021-08-01",
+            'trainingType': 'Test Training',
+            'trainingKm': 20,
+            'trainingD': 1000,
+            'trainingComments': 'Test comments',
+            'status': True
+        }
+
         cls.res, cls.msg, cls.user = CreateNewUser(
             cls.data_register).register()
 

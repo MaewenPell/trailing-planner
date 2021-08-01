@@ -155,8 +155,3 @@ class TestUtilsfunctions(TestCase):
             "name": 'user',
             'km_ran': 50,
         })
-
-
-# 'first': {'name': 'user2', 'km_ran': 52}, 
-# 'second': {'name': 'user', 'km_ran': 50}, 
-# 'third': {'name': '', 'km_ran': 0}}
