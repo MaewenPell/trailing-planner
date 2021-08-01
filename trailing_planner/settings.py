@@ -147,7 +147,7 @@ USE_TZ = True
 # STATIC_ROOT_URL = Path(__file__).resolve().parent.parent
 # STATIC_URL = os.path.join(STATIC_ROOT_URL, 'mainsite/static/')
 
-DEBUG = False
+DEBUG = os.environ.get('DEBUG')
 STATIC_URL = "/static/"
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
