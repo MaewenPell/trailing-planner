@@ -1,0 +1,257 @@
+body {
+    background: #fff;
+    color: #666666;
+    font-family: "Open Sans", sans-serif;
+}
+
+
+.base {
+    background-color: #484d51;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans, Helvetica Neue, sans-serif;
+    font-size: 14px;
+    display: grid;
+    grid-template-rows: max-content auto;
+    grid-gap: 10px;
+    height: 100%;
+    padding: 5px;
+}
+
+/*--------------------------------------------------------------
+# Header
+--------------------------------------------------------------*/
+#header {
+    padding: 30px 0;
+    height: 92px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    transition: all 0.5s;
+    z-index: 997;
+}
+
+#header,
+li {
+    font-size: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    #header #logo h1 {
+        font-size: 26px;
+    }
+
+    #header #logo img {
+        max-height: 40px;
+    }
+}
+
+.board {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-rows: max-content auto;
+}
+
+.board-header {
+    color: black;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.board-header-text {
+    font-weight: bold;
+    padding: 5px;
+}
+
+.board-header .left {
+    display: grid;
+    grid-template-columns: repeat(4, max-content);
+    grid-gap: 10px;
+    justify-self: left;
+}
+
+.board-header .right {
+    display: grid;
+    grid-template-columns: repeat(2, max-content);
+    grid-gap: 10px;
+    justify-self: right;
+}
+
+.button {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.board-lists {
+    display: grid;
+    grid-auto-columns: 272px;
+    grid-auto-flow: column;
+    grid-gap: 8px;
+    overflow: scroll;
+}
+
+.board-list {
+    background-color: rgb(235, 236, 240);
+    border-radius: 3px;
+    display: grid;
+    grid-auto-rows: max-content;
+    grid-gap: 10px;
+    height: max-content;
+    padding: 10px;
+}
+
+.list-title {
+    font-weight: bold;
+}
+
+.card {
+    background-color: white;
+    border-radius: 3px;
+    box-shadow: 0 1px 0 rgba(9, 30, 66, .25);
+    padding: 10px;
+}
+
+.add-card {
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+
+.False {
+    color: orange
+}
+
+.True {
+    color: green
+}
+
+.bd-callout {
+    padding: 1.25rem;
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+    border: 1px solid #e9ecef;
+    border-left-color: rgb(233, 236, 239);
+    border-left-width: .5rem;
+    border-radius: .5rem;
+}
+
+.bd-callout-Recovery.run {
+    border-left-color: #5bc0de;
+}
+
+.bd-callout-Goal.like.run {
+    border-left-color: #009688;
+}
+
+.bd-callout-Specific.run {
+    border-left-color: #9C27B0;
+}
+
+.bd-callout-Intensive.run {
+    border-left-color: red;
+}
+
+.bd-callout-Sharpening.training {
+    border-left-color: #FFA000;
+}
+
+.bd-callout-notraining {
+    border-left-color: grey;
+}
+
+
+.bd-callout-False {
+    border-left-color: orange;
+}
+
+.bd-callout-True {
+    border-left-color: green;
+}
+
+.card-header {
+    text-align: center;
+    font-size: x-large;
+    background-color: rgba(211, 211, 211, 0.20);
+    border-radius: 5px !important;
+    border: none;
+}
+
+.resume {
+    padding-top: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 1rem;
+    background-size: cover;
+    background-color: #e9ecef;
+    color: #484d51;
+    text-align: center;
+    border-radius: 4px;
+    font-weight: 300;
+}
+
+.graphContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+#progressChartWeek {
+    width: 100%;
+    height: 200px;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+}
+
+#progressChartMonth {
+    width: 100%;
+    height: 200px;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+}
+
+.feed {
+    height: 100%;
+    padding: 1.25rem;
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+    background-color: white;
+    border-left-color: rgb(233, 236, 239);
+    border-left-width: .5rem;
+    border-radius: .5rem;}
+
+
+.training-week {
+    color: white;
+}
+
+.train-planning {
+    color: white;
+}
+
+.main-obj {
+    text-align: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding: 1.25rem;
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+    background-color: white;
+    border-left-color: rgb(233, 236, 239);
+    border-left-width: .5rem;
+    border-radius: .5rem;
+}
+
+.btn.btn-rounded {
+    border-radius: 50px
+}
+
+.add-training {
+    font-size: 1.5rem;
+}
+
+.outside-container {
+    display: flex;
+}
+
+.objectives {
+    margin: auto;
+}
