@@ -5,26 +5,21 @@
 
 <head>
     <meta charset="utf-8">
-    <!--  This file has been downloaded from bootdey.com    @bootdey on twitter -->
-    <!--  All snippets are MIT license http://bootdey.com/license -->
     <title>Profil</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="{% static 'assets/login/icons/favicon.ico' %}" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.4.1/dist/chart.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
         integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
-    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
-
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+        integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style_profil.css' %}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.4.1/dist/chart.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 <body>
-    <div class="container bootstrap snippets bootdey">
-        <div class="row" style="background-color: #6b7773">
+    <div class="container">
+        <div class="row">
             <div class="profile-nav col-md-12">
                 <div class="panel">
                     <div class="user-heading round">
@@ -34,36 +29,37 @@
                         <h1>{{user.username}}</h1>
                         <p>{{ user.email }}</p>
                     </div>
-                    <div class="panel">
+                    <div class="panel" style="text-align: center">
+                        <h3>Resume</h3>
                         <div class="panel-body bio-graph-info">
-                            <h1>Bio Graph</h1>
                             <div class="row">
                                 <div class="bio-row">
-                                    <p><span>First Name </span>: {{user.first_name}}</p>
+                                    <div>First Name : {{user.first_name}}</div>
                                 </div>
                                 <div class="bio-row">
-                                    <p><span>Last Name </span>: {{user.last_name}}</p>
+                                    <div>Last Name : {{user.last_name}} </div>
                                 </div>
                                 <div class="bio-row">
-                                    <p><span>Country</span>: <i class="ico ico-france"></i>
-                                        <p>
+                                    <div>Country : <i class="ico ico-france"></i></div>
                                 </div>
                                 <div class="bio-row">
-                                    <p><span>Final objectif</span>: {{sport_profil.final_objectif_name}}</p>
+                                    <div>Final objectif : {{sport_profil.final_objectif_name}}</div>
                                 </div>
                             </div>
                         </div>
+
+                        <a href="{% url 'planner' %}">
+                            {% if sport_profil.final_objectif_name|length > 1 %}
+                                <button style="margin-bottom: 1vh" type="button" class="btn btn-primary">
+                                    <i class="far fa-calendar-alt" style="margin-right: 0.2vw"></i>
+                                    Training Plan
+                                </button>
+                            {% endif %}
+                        </a>
                     </div>
                 </div>
             </div>
-            <div class="profile-info col-md-12">
-
-                <ul class="training-plan nav nav-pills nav-stacked">
-                        {% if sport_profil.final_objectif_name|length > 1 %}
-                        <li active><a href="{% url 'planner' %}"><i class="far fa-calendar-alt"></i></i>Training
-                                Plan</a></li>
-                        {% endif %}
-                    </ul>
+            <div class="panel profile-info col-md-12">
                 {% if sport_profil.final_objectif_name|length < 1 %}
                 <div class="panel-body container-sport-profil">
                     <h1>Please fill your sport profil</h1>
@@ -108,7 +104,7 @@
                 <div>
                     <div class="row">
                         <div class="col-md-12">
-                            <h2 class="title-run">All time progress</h2>
+                            <h3 class="title-run">All time progress</h3>
                             <div class="counter-container">
                                 <div class="km-ran-counter">
                                     <p class="counter-count">{{ all_trainings.total_km }}</p>
@@ -137,89 +133,94 @@
                                     });
                                 });
                             </script>
-                        </div>
-                        <h2 class="title-run">Monthly progress</h2>
-                        <div class="panel">
-                            <canvas id="chartEvolution" width="1000" height="300"></canvas>
-                            <script src="https://cdn.jsdelivr.net/npm/chart.js@3.4.1/dist/chart.min.js"></script>
-                            <script type="text/javascript">
-                                var config = {
-                                    type: 'line',
-                                    data: {
-                                        datasets: [{
-                                            data: {{ all_km | safe }},
-                                            borderColor: 'rgba(45, 201, 151, 1)',
-                                            backgroundColor: 'rgba(45, 201, 151, 0.25)',
-                                            label: 'Kilometers',
-                                            tension: 0.3,
-                                            fill: {
-                                                target: 'origin',
-                                            },
-                                            yAxisID: 'y',
-                                        },
-                                        {
-                                            data: {{ all_deniv | safe }},
-                                            borderColor: 'rgb(248, 203, 0)',
-                                            backgroundColor: 'rgba(248, 203, 0, 0.25)',
-                                            label: 'Elevation gain',
-                                            tension: 0.3,
-                                            fill: {
-                                                target: 'origin',
-                                            },
-                                            yAxisID: 'y1',
-                                        }],
-                                        labels: {{ labels }},
-                                    },
-                                    options: {
-                                        responsive: true,
-                                        scales: {
-                                            y: {
-                                                type: 'linear',
-                                                display: true,
-                                                position: 'left',
-                                                title: {
-                                                    display: true,
-                                                    text : "Number of kilometers ran",
+                            <div class="panel">
+                                <h3 class="title-run">Monthly progress</h3>   
+                                <canvas id="chartEvolution" width="1000" height="300"></canvas>
+                                <script src="https://cdn.jsdelivr.net/npm/chart.js@3.4.1/dist/chart.min.js"></script>
+                                <script type="text/javascript">
+                                    var config = {
+                                        type: 'line',
+                                        data: {
+                                            datasets: [{
+                                                    data: {{ all_km|safe }},
+                                                    borderColor: 'rgba(45, 201, 151, 1)',
+                                                    backgroundColor: 'rgba(45, 201, 151, 0.25)',
+                                                    label: 'Kilometers',
+                                                    tension: 0.3,
+                                                    fill: {
+                                                        target: 'origin',
+                                                    },
+                                                    yAxisID: 'y',
+                                                },
+                                                {
+                                                    data: {{all_deniv|safe }},
+                                                    borderColor: 'rgb(248, 203, 0)',
+                                                    backgroundColor: 'rgba(248, 203, 0, 0.25)',
+                                                    label: 'Elevation gain',
+                                                    tension: 0.3,
+                                                    fill: {
+                                                        target: 'origin',
+                                                    },
+                                                    yAxisID: 'y1',
                                                 }
+                                            ],
+                                            labels: {{ labels }},
+                                        },
+                                        options: {
+                                            responsive: true,
+                                            plugins: {
+                                                legend: {
+                                                    labels: {
+                                                        font: {
+                                                            size: 10
+                                                        }
+                                                    }
+                                                },
                                             },
-                                            y1: {
-                                                type: 'linear',
-                                                display: true,
-                                                position: 'right',
-                                                title: {
+                                            scales: {
+                                                y: {
+                                                    type: 'linear',
                                                     display: true,
-                                                    text: "Number of meters climbed",
+                                                    position: 'left',
+                                                    title: {
+                                                        display: true,
+                                                        text: "Number of kilometers ran",
+                                                        font: {
+                                                            size: 10,
+                                                        }
+                                                    },
                                                 },
-                                                grid: {
-                                                    drawOnChartArea: false,
-                                                },
+                                                y1: {
+                                                    type: 'linear',
+                                                    display: true,
+                                                    position: 'right',
+                                                    title: {
+                                                        display: true,
+                                                        text: "Number of meters climbed",
+                                                        font: {
+                                                            size: 10,
+                                                        }
+                                                    },
+                                                    grid: {
+                                                        drawOnChartArea: false,
+                                                    },
+                                                }
                                             }
-                                        }
                                         }
                                     };
 
-                                    window.onload = function() {
+                                    window.onload = function () {
                                         var ctx = document.getElementById('chartEvolution').getContext('2d');
                                         window.Chart = new Chart(ctx, config);
                                     };
-                            </script>
+                                </script>
+                            </div>
                         </div>
-
                     </div>
                     {% endif %}
                 </div>
             </div>
         </div>
-        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-        <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-        <script src="https://code.highcharts.com/highcharts.src.js"></script>
-        <script src="https://code.highcharts.com/highcharts-more.js"></script>
-        <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
-        </script>
-
-        <script type="text/javascript" src="{% static 'js/profil_main.js' %}"></script>
 </body>
 
 </html>
