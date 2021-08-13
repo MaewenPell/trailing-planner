@@ -70,7 +70,7 @@ iframe {
 }
 
 .ico-france {
-    background: url('../assets/profil/international-flags/svg/195-france.svg');
+    background: url("../assets/profil/international-flags/svg/195-france.469047465296.svg");
 }
 
 .profile-nav,
@@ -155,7 +155,7 @@ iframe {
 
 .bio-graph-heading {
     background-image: linear-gradient(to bottom, rgba(245, 246, 252, 0.40), rgba(220, 237, 200, 0.40)),
-        url('../assets/profil/resized_wall.jpg');
+        url("../assets/profil/resized_wall.2aea5dbdfd0a.jpg");
     background-size: cover;
     color: #fff;
     text-align: center;
