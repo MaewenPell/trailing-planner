@@ -30,56 +30,61 @@
         </div>
     </header>
 
-    <div class="container">
+    <div class="container-body container">
         <h1 id="title">Hall of Fame</h1>
-        <div class="hf-mixed mx-auto col-md-10">
-            <h1>1st</h1>
-            <div class="athlete athlete-first card mb-3 mx-auto">
-                <div class="container-img">
-                    <img src="{% static 'assets/profil/avatar.png' %}" style="height: 75px;">
-                </div>
-                <div class="col-md-8 mx-auto">
-                    <div class="card-body">
-                        <h2 class="card-title">{{ first.name }}</h2>
-                        <hr>
-                        <h4>{{ first.km_ran }} km</h4>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="hf-mixed mx-auto col-md-10">
-            <h1>2nd</h1>
-            <div class="athlete athlete-second card mb-3 mx-auto">
-                <div class="container-img">
-                    <img src="{% static 'assets/profil/avatar.png' %}" style="height: 75px;">
-                </div>
-                <div class="col-md-8 mx-auto">
-                    <div class="card-body">
-                        <h2 class="card-title">{{ second.name }}</h2>
-                        <hr>
-                        <h4>{{ second.km_ran }} km</h4>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <div class="hf-mixed mx-auto col-md-10">
-            <h1>3rd</h1>
-            <div class="athlete athlete-third card mb-3 mx-auto">
-                <div class="container-img">
-                    <img src="{% static 'assets/profil/avatar.png' %}" style="height: 75px;">
+        <div class="row">
+            <div class="hf-mixed mx-auto col-md-4">
+                <h2 class="first">1st</h2>
+                <div class="athlete athlete-first card mb-3 mx-auto">
+                    <div class="container-img">
+                        <img src="{% static 'assets/profil/avatar.png' %}" style="height: 75px;">
+                    </div>
+                    <div class="col-md-8 mx-auto">
+                        <div class="card-body">
+                            <h2 class="card-title">{{ first.name }}</h2>
+                            <hr>
+                            <h4>{{ first.km_ran }} km</h4>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-8 mx-auto">
-                    <div class="card-body">
-                        <h2 class="card-title">{{ third.name }}</h2>
-                        <hr>
-                        <h4>{{ third.km_ran }} km</h4>
+            </div>
+            <div class="hf-mixed mx-auto col-md-4">
+                <h2 class="second">2nd</h2>
+                <div class="athlete athlete-second card mb-3 mx-auto">
+                    <div class="container-img">
+                        <img src="{% static 'assets/profil/avatar.png' %}" style="height: 75px;">
+                    </div>
+                    <div class="col-md-8 mx-auto">
+                        <div class="card-body">
+                            <h2 class="card-title">{{ second.name }}</h2>
+                            <hr>
+                            <h4>{{ second.km_ran }} km</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hf-mixed mx-auto col-md-4">
+                <h2 class="third">3rd</h2>
+                <div class="athlete athlete-third card mb-3 mx-auto">
+                    <div class="container-img">
+                        <img src="{% static 'assets/profil/avatar.png' %}" style="height: 75px;">
+                    </div>
+                    <div class="col-md-8 mx-auto">
+                        <div class="card-body">
+                            <h2 class="card-title">{{ third.name }}</h2>
+                            <hr>
+                            <h4>{{ third.km_ran }} km</h4>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        
 
-        <canvas id="chartRanking" width="1000" height="300"></canvas>
+        <h1 id="title">Overview</h1>
+        <canvas id="chartRanking"></canvas>
 
         <script src="https://cdn.jsdelivr.net/npm/chart.js@3.4.1/dist/chart.min.js"></script>
         <script>
@@ -89,9 +94,9 @@
                     label: 'Number of km ran',
                     data: {{ all_km }},
                     backgroundColor: [
-                    'rgba(255, 215, 0, 0.2)',
-                    'rgba(192, 192, 192, 0.2)',
-                    'rgba(205, 127, 50, 0.2)',
+                    'rgba(255, 215, 0, 0.7)',
+                    'rgba(192, 192, 192, 0.7)',
+                    'rgba(205, 127, 50, 0.7)',
                     ],
                     borderColor: [
                     'gold',
@@ -117,12 +122,9 @@
                 window.Chart = new Chart(ctx, config);
             };
         </script>
-        
-        
     </div>
 </body>
 
-<script src="https://code.highcharts.com/highcharts.src.js"></script>
-<script type="text/javascript" src="{% static 'js/walloffame_main.js' %}"></script>
+
 
 </html>
