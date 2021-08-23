@@ -77,8 +77,4 @@ This repository is following the PEP8 style guide for python. There is no auto l
 
 ## Licensing
 
-One really important part: Give your project a proper license. Here you should
-state what the license is and how to find the text version of the license.
-Something like:
-
-"The code in this project is licensed under MIT license."
+The code in this project is licensed under MIT license.
