@@ -10,16 +10,17 @@ class CreateNewUser():
         self.error_list = []
         self.first_name = data['first_name']
         self.last_name = data['last_name']
+        self.username = data['username']
         self.email = data['email']
         self.password = data['password']
         self.re_password = data['re_password']
 
-        if self.first_name != "" and self.last_name != "":
-            self.user_name = self._create_user_name(False)
+        # if self.first_name != "" and self.last_name != "":
+        #     self.user_name = self._create_user_name(False)
 
     def _check_no_empty_field(self) -> bool:
         for elem in (self.first_name, self.last_name, self.email,
-                     self.password, self.re_password):
+                     self.username, self.password, self.re_password):
             if elem == "":
                 self.error_list.append("Some field are empty")
                 return False
@@ -56,22 +57,23 @@ class CreateNewUser():
             if res_inputs:
                 try:
                     new_user = User.objects.create_user(
-                        self.user_name, self.email, self.password)
+                        self.username, self.email, self.password)
                     new_user.last_name = self.last_name
                     new_user.first_name = self.first_name
                     new_user.save()
-                except IntegrityError as e:
-                    if ('username' in e.args[0]):
-                        self.user_name = self._create_user_name(True)
-                        self.register()
+                except IntegrityError:
+                    pass
+                    # if ('username' in e.args[0]):
+                    #     # self.user_name = self._create_user_name(True)
+                    #     self.register()
                 return (True, "", new_user)
         return (False, self.error_list, None)
 
-    def _create_user_name(self, nb: bool) -> str:
-        gen_user_name = self.first_name + self.last_name[0].upper()
-        if nb:
-            gen_user_name = f"{gen_user_name}{randint(1, 99)}"
-        return f"{gen_user_name}"
+    # def _create_user_name(self, nb: bool) -> str:
+    #     gen_user_name = self.first_name + self.last_name[0].upper()
+    #     if nb:
+    #         gen_user_name = f"{gen_user_name}{randint(1, 99)}"
+    #     return f"{gen_user_name}"
 
 
 class ConnectUser():

@@ -8,6 +8,7 @@ class TestCreateNewUser(TestCase):
         cls.correct_data = {
             'first_name': "LocalTestUser",
             'last_name': "LastNameTestUser",
+            'username': 'LocalTestUserL',
             'email': "email@test-user.com",
             'password': "test1234&",
             're_password': "test1234&"
@@ -16,6 +17,7 @@ class TestCreateNewUser(TestCase):
         cls.missing_data = {
             'first_name': "",
             'last_name': "test",
+            'username': 'LocalTestUserL',
             'email': "email@test-user.com",
             'password': "test1234&",
             're_password': "test1234&"
@@ -50,6 +52,7 @@ class TestCreateNewUser(TestCase):
             {
                 'first_name': "LocalTestUser",
                 'last_name': "LastNameTestUser",
+                'username': 'LocalTestUserL',
                 'email': "email@test-user.com",
                 'password': "test",
                 're_password': "test"
@@ -63,6 +66,7 @@ class TestCreateNewUser(TestCase):
             {
                 'first_name': "LocalTestUser",
                 'last_name': "LastNameTestUser",
+                'username': 'LocalTestUserL',
                 'email': "email@test-user.com",
                 'password': "test1234&",
                 're_password': "test1234="
@@ -76,6 +80,7 @@ class TestCreateNewUser(TestCase):
             {
                 'first_name': "LocalTestUser",
                 'last_name': "LastNameTestUser",
+                'username': 'LocalTestUserL',
                 'email': "email@test-user.com",
                 'password': "test1234",
                 're_password': "test1234"
@@ -92,6 +97,7 @@ class TestCreateNewUser(TestCase):
             {
                 'first_name': f"{long_first_name}",
                 'last_name': f"{long_last_name}",
+                'username': 'LocalTestUserL',
                 'email': "email@test-user.com",
                 'password': "test1234&",
                 're_password': "test1234&"
@@ -106,6 +112,7 @@ class TestCreateNewUser(TestCase):
             {
                 'first_name': "a",
                 'last_name': "b",
+                'username': 'LocalTestUserL',
                 'email': "email@test-user.com",
                 'password': "test1234&",
                 're_password': "test1234&"
@@ -122,6 +129,7 @@ class TestCreateNewUser(TestCase):
             {
                 'first_name': "LocalTestUser123",
                 'last_name': "LastNameTestUser123",
+                'username': 'LocalTestUserL1',
                 'email': "email@test-user.com",
                 'password': "test1234&",
                 're_password': "test1234&"
@@ -137,6 +145,7 @@ class TestCreateNewUser(TestCase):
             data={
                 'first_name': "LocalTestUser123",
                 'last_name': "LastNameTestUser123",
+                'username': 'LocalTestUserL',
                 'email': "email@test-user.com",
                 'password': "test",
                 're_password': "test"
