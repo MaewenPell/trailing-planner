@@ -28,6 +28,7 @@ class PlannerPageTest(LiveServerTestCase):
         self.data_register = {
             'first_name': "user",
             'last_name': "test",
+            'username': "userT",
             'email': "email@test-user.com",
             'password': "test1234&",
             're_password': "test1234&"

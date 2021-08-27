@@ -11,6 +11,7 @@ class TestUtilsfunctions(TestCase):
         cls.data_register = {
             'first_name': "user",
             'last_name': "test",
+            'username': 'userT',
             'email': "email@test-user.com",
             'password': "test1234&",
             're_password': "test1234&"
@@ -19,6 +20,7 @@ class TestUtilsfunctions(TestCase):
         cls.data_register_2 = {
             'first_name': "user2",
             'last_name': "test2",
+            'username': 'user2T',
             'email': "email@test-user2.com",
             'password': "test1234&",
             're_password': "test1234&"
@@ -27,6 +29,7 @@ class TestUtilsfunctions(TestCase):
         cls.data_register_3 = {
             'first_name': "user3",
             'last_name': "test3",
+            'username': 'user3T',
             'email': "email@test-user3.com",
             'password': "test1234&",
             're_password': "test1234&"
